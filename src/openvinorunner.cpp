@@ -22,8 +22,8 @@ OpenVINORunner::OpenVINORunner(const std::string& xml_path, const std::string& d
 	_output_shape = model->get_output_shape(0);
 
 	_compiled_model = _core.compile_model(model, _device,
-		ov::hint::performance_mode(ov::hint::PerformanceMode::THROUGHPUT),
-		ov::hint::inference_precision(ov::element::f32));
+		ov::device::properties("GPU", ov::hint::inference_precision(ov::element::f32)),
+		ov::hint::performance_mode(ov::hint::PerformanceMode::THROUGHPUT));
 
 	uint32_t nireq = _compiled_model.get_property(ov::optimal_number_of_infer_requests);
 

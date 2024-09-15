@@ -10,6 +10,10 @@ FaceDetectionApp::FaceDetectionApp(int argc, char **argv)
 
     capture.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
     capture.set(cv::CAP_PROP_FRAME_HEIGHT, 1080);
+
+    auto devices = OpenVINORunner::get_available_devices();
+
+    face_detection = OpenVINORunner("models/face-detection-adas-0001.xml", "CPU");
 }
 
 FaceDetectionApp::~FaceDetectionApp()
