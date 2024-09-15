@@ -2,6 +2,8 @@
 
 #include <memory>
 
+ov::Core OpenVINORunner::_core = ov::Core();
+
 OpenVINORunner::OpenVINORunner()
 {
 }
@@ -17,7 +19,7 @@ OpenVINORunner::OpenVINORunner(const std::string& xml_path, const std::string& d
 
 	std::shared_ptr<ov::Model> model = _core.read_model(_model_xml);
 	_input_shape = model->input().get_shape();
-	_output_shape = model->get_output_shape();
+	_output_shape = model->get_output_shape(0);
 
 	_compiled_model = _core.compile_model(model, _device,
 		ov::hint::performance_mode(ov::hint::PerformanceMode::THROUGHPUT),
