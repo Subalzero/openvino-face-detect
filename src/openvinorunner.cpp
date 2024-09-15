@@ -141,4 +141,12 @@ void OpenVINORunner::get(std::vector<float>& output)
 	_infer_results.pop();
 }
 
+std::vector<std::string> OpenVINORunner::get_available_devices()
+{
+	return _core.get_available_devices();
+}
 
+std::string OpenVINORunner::get_device_name(const std::string& device)
+{
+	return _core.get_property(device, ov::device::full_name);
+}

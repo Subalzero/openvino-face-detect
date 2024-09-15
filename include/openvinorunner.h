@@ -34,6 +34,9 @@ public:
 
 	void get(std::vector<float>& output);
 
+	static std::vector<std::string> get_available_devices();
+	static std::string get_device_name(const std::string& device);
+
 private:
 	static ov::Core _core;
 
