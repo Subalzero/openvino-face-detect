@@ -1,7 +1,7 @@
-#include <iostream>
+#include "facedetectionapp.h"
 
 int main(int argc, char **argv)
 {
-    std::cout << "Hello, world!" << std::endl;
-    return 0;
+    FaceDetectionApp app(argc, argv);
+    return app.exec();
 }
